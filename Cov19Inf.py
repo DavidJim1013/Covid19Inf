@@ -14,21 +14,23 @@ def get_cov_data_info():
     json_data=json.loads(json_data_str)
     domesticStats=json_data['data']['domesticStats']
     #累计确诊
-    diagnosed=domesticStats['diagnosed']
+    diagnosed=str(domesticStats['diagnosed'])
     #累计治愈
-    cured=domesticStats['cured']
+    cured=str(domesticStats['cured'])
     #现有疑似
-    suspect=domesticStats['suspect']
+    suspect=str(domesticStats['suspect'])
     #累计死亡
-    death=domesticStats['death']
+    death=str(domesticStats['death'])
     #现有确诊
-    currentConfirmedCount=domesticStats['currentConfirmedCount']
+    currentConfirmedCount=str(domesticStats['currentConfirmedCount'])
     #无症状感染者
-    noInfectCount=domesticStats['noInfectCount']
+    noInfectCount=str(domesticStats['noInfectCount'])
     #境外输入
-    importedCount=domesticStats['importedCount']
+    importedCount=str(domesticStats['importedCount'])
     #现有重症
-    seriousCount=domesticStats['seriousCount']
+    seriousCount=str(domesticStats['seriousCount'])
+    #更新时间
+    times=str(domesticStats['times'])
 
     domesticStats_data={
         "diagnosed":diagnosed,
@@ -38,11 +40,13 @@ def get_cov_data_info():
         "currentConfirmedCount":currentConfirmedCount,
         "noInfectCount":noInfectCount,
         "importedCount":importedCount,
-        "seriousCount":seriousCount
+        "seriousCount":seriousCount,
+        "times":times
     }
+    jsondata = json.dumps(domesticStats_data)
 
-    domesticStats=[diagnosed,cured,suspect,death,currentConfirmedCount,noInfectCount,importedCount,seriousCount]
-    return domesticStats_data
+    domesticStats=[diagnosed,cured,suspect,death,currentConfirmedCount,noInfectCount,importedCount,seriousCount,times]
+    return jsondata
 
 urls = (
     '/', 'index'
@@ -50,6 +54,7 @@ urls = (
 
 class index:
     def GET(self):
+        web.header("Access-Control-Allow-Origin", "*") 
         domesticStats_data=get_cov_data_info()
         return domesticStats_data
 
