@@ -13,6 +13,7 @@ def get_cov_data_info():
     json_data_str=re.findall('window.__INITIAL_STATE__ = (.*?)</script>',rep)[0]
     json_data=json.loads(json_data_str)
     domesticStats=json_data['data']['domesticStats']
+    globalStats=json_data['data']['globalStatis']
     #累计确诊
     diagnosed=str(domesticStats['diagnosed'])
     #累计治愈
@@ -31,6 +32,14 @@ def get_cov_data_info():
     seriousCount=str(domesticStats['seriousCount'])
     #更新时间
     times=str(domesticStats['times'])
+    #全球现有确诊
+    nowConfirm=str(globalStats['nowConfirm'])
+    #全球累计确诊
+    confirm=str(globalStats['confirm'])
+    #全球累计治愈
+    heal=str(globalStats['heal'])
+    #全球累计死亡
+    dead=str(globalStats['dead'])
 
     domesticStats_data={
         "diagnosed":diagnosed,
@@ -41,7 +50,11 @@ def get_cov_data_info():
         "noInfectCount":noInfectCount,
         "importedCount":importedCount,
         "seriousCount":seriousCount,
-        "times":times
+        "times":times,
+        "globalnowconfirm":nowConfirm,
+        "globalconfirm":confirm,
+        "globalheal":heal,
+        "dead":dead
     }
     jsondata = json.dumps(domesticStats_data)
 
