@@ -41,7 +41,7 @@ def get_cov_data_info():
     #全球累计死亡
     dead=str(globalStats['dead'])
 
-    domesticStats_data={
+    domesticStats_data=[{
         "diagnosed":diagnosed,
         "cured":cured,
         "suspect":suspect,
@@ -50,12 +50,16 @@ def get_cov_data_info():
         "noInfectCount":noInfectCount,
         "importedCount":importedCount,
         "seriousCount":seriousCount,
-        "times":times,
+    },
+    {
         "globalnowconfirm":nowConfirm,
         "globalconfirm":confirm,
         "globalheal":heal,
         "dead":dead
-    }
+    },
+    {
+        "times":times
+    }]
     jsondata = json.dumps(domesticStats_data)
 
     domesticStats=[diagnosed,cured,suspect,death,currentConfirmedCount,noInfectCount,importedCount,seriousCount,times]
