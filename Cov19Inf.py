@@ -42,18 +42,17 @@ def get_cov_data_info():
     dead=str(globalStats['dead'])
 
     domesticStats_data=[
-        {
-        "dataone":["累计确诊","累计治愈","现有疑似","累计死亡"],
-        "datatwo":[diagnosed,cured,suspect,death],
-        "datathree":["现有确诊","无症状感染者","境外输入","现有重症"],
-        "datafour":[currentConfirmedCount,noInfectCount,importedCount,seriousCount],
-        "datatime":times
-        },
-        {
-        "dataone":["现有确诊","累计确诊","累计治愈","累计死亡"],
-        "datatwo":[nowConfirm,confirm,heal,dead],
-        "datatime":times
-        }
+        [
+        ["累计确诊","累计治愈","现有疑似","累计死亡"],
+        [diagnosed,cured,suspect,death],
+        ["现有确诊","无症状感染者","境外输入","现有重症"],
+        [currentConfirmedCount,noInfectCount,importedCount,seriousCount],
+        ],
+        [
+        ["现有确诊","累计确诊","累计治愈","累计死亡"],
+        [nowConfirm,confirm,heal,dead],
+        ],
+        times
     ]
     jsondata = json.dumps(domesticStats_data)
 
